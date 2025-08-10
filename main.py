@@ -2,6 +2,11 @@ import telebot
 import random
 import os
 from dotenv import load_dotenv
+from flask import Flask
+import time
+
+app = Flask(__name__)
+start_time = time.time()
 
 load_dotenv()
 
@@ -97,10 +102,22 @@ def start(message):
     )
 
     markup = telebot.types.InlineKeyboardMarkup()
-markup.add(telebot.types.InlineKeyboardButton("NUMBER INFORMATION BOT 💃", url="https://t.me/MULTI_USASES_BOT?start"))
-markup.add(telebot.types.InlineKeyboardButton("DESI VIDEOS GROUP 💃", url="https://t.me/+t9TEXXB_4ck2ODRl"))
-markup.add(telebot.types.InlineKeyboardButton("📣 Join Channel 1", url="https://t.me/+ZUXtxXBzR_VkMjU1"))
-    markup.add(telebot.types.InlineKeyboardButton("✅ Joined Channels", callback_data="check_join"))
+    markup.add(telebot.types.InlineKeyboardButton(
+        "NUMBER INFORMATION BOT 💃",
+        url="https://t.me/MULTI_USASES_BOT?start"
+    ))
+    markup.add(telebot.types.InlineKeyboardButton(
+        "DESI VIDEOS GROUP 💃",
+        url="https://t.me/+t9TEXXB_4ck2ODRl"
+    ))
+    markup.add(telebot.types.InlineKeyboardButton(
+        "📣 Join Channel 1",
+        url="https://t.me/+ZUXtxXBzR_VkMjU1"
+    ))
+    markup.add(telebot.types.InlineKeyboardButton(
+        "✅ Joined Channels",
+        callback_data="check_join"
+    ))
 
     bot.send_photo(
         user_id,
@@ -182,3 +199,14 @@ def broadcast(message):
 
 # === Polling ===
 bot.polling(none_stop=True)
+
+@app.route("/", methods=["GET"])
+def uptime():
+    uptime_seconds = int(time.time() - start_time)
+    return {
+        "status": "ok",
+        "uptime_seconds": uptime_seconds
+    }
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
