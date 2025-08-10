@@ -203,7 +203,7 @@ bot.polling(none_stop=True)
 def uptime():
     return {
         "status": "ok",
-        "uptime_seconds": "uptime_seconds": "ok"
+        "uptime_seconds": "ok"
     }
 
 if __name__ == '__main__':
