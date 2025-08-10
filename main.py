@@ -6,7 +6,6 @@ from flask import Flask
 import time
 
 app = Flask(__name__)
-start_time = time.time()
 
 load_dotenv()
 
@@ -202,12 +201,10 @@ bot.polling(none_stop=True)
 
 @app.route("/", methods=["GET"])
 def uptime():
-    uptime_seconds = int(time.time() - start_time)
     return {
         "status": "ok",
-        "uptime_seconds": uptime_seconds
+        "uptime_seconds": "uptime_seconds": "ok"
     }
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Use Render's assigned port
-    app.run(host="0.0.0.0", port=port)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
