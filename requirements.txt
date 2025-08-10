@@ -1,0 +1,6 @@
+flask
+dotenv
+telebot
+gunicorn
+python-dotenv
+pyTelegramBotAPI
